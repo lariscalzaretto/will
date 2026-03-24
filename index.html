@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Meu Amor</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* IMAGEM DE FUNDO DE CORAÇÕES */
+            background-image: url('fundo-coracoes.jpg'); 
+            background-size: cover;
+            background-position: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        #container {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Botão Play */
+        #playBtn {
+            padding: 15px 40px;
+            font-size: 20px;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 20;
+            transition: transform 0.3s;
+        }
+
+        #playBtn:hover { transform: scale(1.1); }
+
+        /* Área da Animação */
+        #animation-scene {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        /* Personagens PNG */
+        .personagem {
+            position: absolute;
+            bottom: 20%; /* Ajuste a altura conforme a sua imagem */
+            height: 450PX; /* Tamanho dos personagens */
+            transition: all 2.5s ease-in-out;
+        }
+
+        .menina {
+            left: -300px; /* Começa fora da tela à esquerda */
+        }
+
+        .menino {
+            right: -300px; /* Começa fora da tela à direita */
+        }
+
+        /* Posição final (se aproximando) */
+        .aproximar-menina {
+            left: calc(50% - 220px); /* Ajuste para eles ficarem próximos mas não um em cima do outro */
+        }
+
+        .aproximar-menino {
+            right: calc(50% - 220px);
+        }
+
+        /* Cartinha */
+        #cartinha {
+            display: none;
+            opacity: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            z-index: 30;
+            border: 3px solid #ff4d6d;
+            text-align: center;
+        }
+
+        #cartinha h2 {
+            color: #ff4d6d;
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            margin: 0;
+        }
+
+        /* Animação de aparecer a carta */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -30%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .show-card {
+            display: block !important;
+            animation: fadeIn 1s forwards;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="container">
+        <button id="playBtn" onclick="iniciarAnimacao()">Clique aqui, amor ❤️</button>
+
+        <div id="animation-scene">
+            <!-- COLOQUE O NOME DOS SEUS ARQUIVOS PNG AQUI -->
+            <img src="menina.png" class="personagem menina" id="menina">
+            <img src="menino.png" class="personagem menino" id="menino">
+        </div>
+
+        <div id="cartinha" id="cartinha">
+            <h2>William,
+            </h2>
+            <p>Obrigada por ter me conhecido, por me fazer feliz todos os dias desde o primeiro dia.</p>
+            <p style="font-size: 40px; margin-top: 10px;">❤️</p>
+        </div>
+    </div>
+
+    <script>
+        function iniciarAnimacao() {
+            document.getElementById('playBtn').style.display = 'none';
+            document.getElementById('animation-scene').style.display = 'block';
+
+            const menina = document.getElementById('menina');
+            const menino = document.getElementById('menino');
+            const cartinha = document.getElementById('cartinha');
+
+            // Inicia o movimento
+            setTimeout(() => {
+                menina.classList.add('aproximar-menina');
+                menino.classList.add('aproximar-menino');
+            }, 100);
+
+            // Mostra a cartinha
+            setTimeout(() => {
+                cartinha.classList.add('show-card');
+            }, 2800);
+        }
+    </script>
+</body>
+</html>
